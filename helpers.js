@@ -9,15 +9,14 @@ export function getCurrentDate() {
     return date.split(' ')[0]
 }
 
-export function checkIfLatestData(currentDate) {
+export async function checkIfLatestData(currentDate) {
     let data = fs.readFileSync('Bitstamp_BTCUSD.csv', 'utf8');
     let csvArrayDaily = data.split(/\r?\n/).slice(2,3);
     const dateFromFile = csvArrayDaily[0].split(',')[1].split(' ')[0];
     return (dateFromFile === currentDate)
 }
 
-export async function getLatestData(currentDate) {
-    console.log('Data is current?', dataIsCurrent)
+export async function getLatestData(dataIsCurrent, currentDate) {
     if (!dataIsCurrent) {
         console.log('Grabbing latest data for today', currentDate)
         const response = await fetch(' https://www.cryptodatadownload.com/cdd/Bitstamp_BTCUSD_d.csv')
@@ -28,4 +27,5 @@ export async function getLatestData(currentDate) {
         });
         return fs.readFileSync('Bitstamp_BTCUSD.csv', 'utf8');
     }
+    return fs.readFileSync('Bitstamp_BTCUSD.csv', 'utf8');
 }
