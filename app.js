@@ -1,20 +1,13 @@
 import { getCurrentDate, checkIfLatestData, getLatestData, determineFile } from './helpers.js';
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0
 
-let latestData = '';
 let currentDate = getCurrentDate();
-
 let fileIsGood = await determineFile()
-let latestFilePulled = await checkIfLatestData(currentDate);
+let latestFilePulled = await checkIfLatestData(currentDate, fileIsGood);
 
-console.log('determineFileisGood',fileIsGood)
-     latestData = await getLatestData(currentDate, fileIsGood).then(data => {
+let latestData = await getLatestData(currentDate, fileIsGood).then(data => {
         return data;
-    });
-
-
-
-
+});
 
 let csvArrayDaily = latestData.split(/\r?\n/).slice(2,-1);
 const currentBtcPrice = csvArrayDaily[0].split(',')[3];
