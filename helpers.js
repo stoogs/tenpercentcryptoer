@@ -28,8 +28,8 @@ export async function determineFile() {
     return false;
 }
 
-export async function checkIfLatestData(currentDate,fileExists) {
-    if(fileExists) {
+export async function checkIfLatestData(currentDate,fileIsGood) {
+    if(fileIsGood) {
         let data = fs.readFileSync('./Bitstamp_BTCUSD_d.csv', 'utf8');
         console.log(data.length)
         if (data && data.length > 0) {

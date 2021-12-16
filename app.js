@@ -13,7 +13,7 @@ let csvArrayDaily = latestData.split(/\r?\n/).slice(2,-1);
 const currentBtcPrice = csvArrayDaily[0].split(',')[3];
 
 const months = 12
-const monthlyInvestment = 100
+const monthlyInvestment = 200
 let totalInvestment = months * monthlyInvestment
 
 let csvArrayMonthly = (csvArray) => {
